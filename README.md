@@ -1,6 +1,6 @@
 # GPT Client done with Next.js + Tailwind CSS
 
-This is a chat client wired to consume OpenAI Chat GPT3 API, preserving the chat history so that the model holds a conversation with the user
+This is a chat client wired to consume OpenAI Chat GPT3 API, preserving the chat history so that the model holds a conversation with the user.
 
 ### Run Chat GPT
 

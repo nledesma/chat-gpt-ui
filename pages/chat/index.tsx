@@ -3,6 +3,7 @@ import { MdSend } from "react-icons/md";
 import { useState } from "react";
 import { ConversationContext, Sender } from "../../interfaces/interfaces";
 import { updateContext } from "../../model/context";
+import Writing from "./writing";
 
 const initialContext: ConversationContext = {
   conversation: [],
@@ -10,6 +11,7 @@ const initialContext: ConversationContext = {
 }
 
 const Chat = () => {
+  const [loadingResponse, setLoadingResponse] = useState(false);
   const [context, setContext] = useState(initialContext);
   const [messageInput, setMessageInput] = useState('');
 
@@ -22,10 +24,12 @@ const Chat = () => {
       })
     });
     setContext(await response.json());
+    setLoadingResponse(false);
   }
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' && messageInput.trim() !== '') {
+      setLoadingResponse(true);
       const userUpdatedContext = updateContext(context, {
         sender: Sender.user,
         time: new Date(),
@@ -44,6 +48,7 @@ const Chat = () => {
     <>
       <div className="flex flex-1 w-full flex-col justify-between">
         <div className="flex w-full flex-col-reverse max-h-[75vh] overflow-auto pr-2 scrollbar">
+          {loadingResponse && <Writing />}
           {conversationDisplay.map(conversationItem => <Bubble sender={conversationItem.sender} content={conversationItem.content} />)}
         </div>
         <div className="flex w-full flex-row pr-2">

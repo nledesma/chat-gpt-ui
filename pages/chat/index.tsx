@@ -1,9 +1,9 @@
-import Bubble from "./bubble";
+import Bubble from "../../components/chat/bubble";
 import { MdSend } from "react-icons/md";
 import { useState } from "react";
 import { ConversationContext, Sender } from "../../interfaces/interfaces";
 import { updateContext } from "../../model/context";
-import Writing from "./writing";
+import Writing from "../../components/chat/writing";
 
 const initialContext: ConversationContext = {
   conversation: [],
@@ -45,7 +45,10 @@ const Chat = () => {
   const conversationDisplay = context.conversation.slice(0).reverse()
 
   return (
-    <>
+    <div className="flex h-full flex-col items-center justify-center py-2">
+      <h2 className="text-4xl font-bold">
+        Chat with GPT
+      </h2>
       <div className="flex flex-1 w-full flex-col justify-between">
         <div className="flex w-full flex-col-reverse max-h-[75vh] overflow-auto pr-2 scrollbar">
           {loadingResponse && <Writing />}
@@ -68,7 +71,7 @@ const Chat = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

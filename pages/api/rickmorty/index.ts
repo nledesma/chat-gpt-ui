@@ -1,10 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { Character } from 'rickmortyapi';
 // import { Character, getCharacters } from 'rickmortyapi';
-import rickMortyCharacters from '../../data/rickmortycharacters.json'
+import rickMortyCharacters from '../../../data/rickmortycharacters.json'
 
 export default async function handler(
   _req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<Character[]>
 ) {
   /* Preventing querying the univers of characters. Its a public API. No need to burst requests */
   // let characters: Character[] = []
@@ -19,5 +20,5 @@ export default async function handler(
   //   }
   //   page++;
   // }
-  res.status(200).json(rickMortyCharacters);
+  res.status(200).json(rickMortyCharacters as Character[]);
 }

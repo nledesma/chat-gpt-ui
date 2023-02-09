@@ -23,10 +23,6 @@ html, body {
 	padding:0;
 }
 
-body {
-	background:#F6F7F8;
-}
-
 .dot {
   display:inline-block;
   width:4px;

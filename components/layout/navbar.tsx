@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/router'
 import {
   AppBar, Box, Button, Container, IconButton,
-  Menu, MenuItem, Typography, Toolbar
+  Menu, MenuItem, Typography, Toolbar, FormControlLabel, Switch
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LaptopIcon from '@mui/icons-material/Laptop';
 import CodeIcon from '@mui/icons-material/Code';
+import { DarkMode, LightMode } from '@mui/icons-material';
 
 const pageItems = [
   {
@@ -19,7 +20,12 @@ const pageItems = [
   }
 ];
 
-const Navbar = () => {
+interface NavProps {
+  themeSwitcher: () => void
+  themeMode: string
+}
+
+const Navbar = ({ themeSwitcher, themeMode }: NavProps) => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const router = useRouter();
 
@@ -124,6 +130,9 @@ const Navbar = () => {
                 {page.name}
               </Button>
             ))}
+          </Box>
+          <Box sx={{ justifyContent: 'flex-end' }}>
+            <FormControlLabel control={<Switch onChange={themeSwitcher} />} label={themeMode === 'light' ? <LightMode/> : <DarkMode/>} />
           </Box>
         </Toolbar>
       </Container>

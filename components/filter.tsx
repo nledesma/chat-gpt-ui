@@ -1,5 +1,5 @@
 import { Skeleton, TextField } from "@mui/material";
-import { useDeferredValue, useEffect, useState } from "react";
+import { useDeferredValue, useEffect } from "react";
 import get from 'lodash.get';
 
 export interface FilterProps {
@@ -29,7 +29,7 @@ const Filter = ({
 
   useEffect(() => {
     if (deferredSearch.trim().length >= minSearchLength) {
-      setFilteredData(data.filter((elem) => transformCase(get(elem, searchPath)).includes(transformCase(deferredSearch.trim()))));
+      setFilteredData(data.filter((elem) => transformCase(get(elem, searchPath)).includes(transformCase(deferredSearch).trim())));
     } else {
       setFilteredData([]);
     }

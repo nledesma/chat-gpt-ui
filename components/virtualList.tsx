@@ -1,5 +1,5 @@
 import { FixedSizeList, ListChildComponentProps } from "react-window";
-import { Box, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { Box, ListItem, ListItemButton, ListItemText, useTheme } from "@mui/material";
 import get from 'lodash.get';
 
 export interface VirtualListProps<T> {
@@ -18,6 +18,7 @@ const VirtualList = ({
   keyPath,
   onSelect,
 }: VirtualListProps<any>) => {
+  const theme = useTheme();
   const renderRow = (props: ListChildComponentProps) => {
     const { index, style } = props;
     const item = items[index];
@@ -36,13 +37,13 @@ const VirtualList = ({
         style={{ 
           position: 'absolute', 
           zIndex: 3000, 
-          backgroundColor: '#f6f7f8', 
+          backgroundColor: theme.palette.background.paper, 
           maxWidth: '1152px',
           width: '94%',
           marginRight: 'auto',
           marginLeft: 'auto',
         }} 
-        width="100%" height={300} 
+        width="100%" height={250} 
         itemSize={64} 
         itemCount={items.length}>
         {renderRow}
